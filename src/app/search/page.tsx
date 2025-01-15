@@ -25,7 +25,11 @@ export default function SearchPage() {
     });
 
     const searchResults = fuse.search(query);
-    setResults(searchResults.map(result => result.item));
+    setResults(searchResults.map(result => result.item).sort((e1, e2) => {
+      const dateA = new Date(e1.date);
+      const dateB = new Date(e2.date);
+      return dateB.getTime() - dateA.getTime();
+    }));
   }, [query]);
 
   return (

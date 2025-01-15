@@ -59,7 +59,7 @@ const EventDatas: EventData[] = [
 
 <p>&#55357;&#56524;Click the link in our bio to secure your spot today! &#55357;&#56613;&#55357;&#56538;&#10024;</p>`,
         id: 3,
-        category: ['Club', 'Intellexa'],
+        category: ['Club', 'Intellexa', 'Tech', 'Academics'],
         dispaly: [1, 2]
     },
 ]

@@ -23,7 +23,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="fixed left-0 top-0 right-0 bg-background backdrop-blur-sm shadow-sm border z-10">
+        <div className="fixed left-0 top-0 right-0 bg-background backdrop-blur-sm shadow-sm border z-40">
             <div className="container mx-auto px-4 h-16 flex items-center">
                 <div className="relative w-full max-w-md mx-auto bg-slate-200 rounded-full">
                     <div 
