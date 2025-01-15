@@ -53,7 +53,7 @@ jobs:
         run: |
           mkdir -p "public/photos/events/${{ github.event.inputs.by }}"
 
-          curl image_url > temp_image
+          curl "${{ github.event.inputs.image_url }}" > temp_image
           
           FILE_TYPE=$(file -b --mime-type temp_image)
           
