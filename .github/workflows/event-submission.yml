@@ -41,6 +41,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+        
+      - name: Create new event branch
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          branch_name="event-${{ github.event.inputs.title }}"
+          git checkout -b $branch_name
 
       - name: Process image and detect format
         run: |
