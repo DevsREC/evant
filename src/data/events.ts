@@ -36,7 +36,7 @@ const EventDatas: EventData[] = [
         image: '/photos/events/devs/devs-p2p-challenge.jpg',
         registrationLink: '#',
         date: '14 October 2024',
-        avatar: '/photos/clubs/devs.jpg',
+        avatar: '/photos/clubs/devs.png',
         by: "DEVS",
         description: `
 <p>Get ready for DEV DAYS &ndash; a thrilling 20-day journey with DEVS REC, where you&rsquo;ll progress from &ldquo;What does this button do?&rdquo; to &ldquo;Check out what I created!&rdquo; &#55358;&#56595; There will be 4 exciting challenges designed to boost your skills, with a HUGE surprise waiting for the one that conquers them all! &#55356;&#57217; If you&rsquo;re eager to learn, create, and enjoy some fun, join us as the real excitement kicks off! &#55357;&#56490;&#55356;&#57341;</p>
