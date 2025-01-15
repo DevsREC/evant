@@ -23,8 +23,8 @@ on:
       display:
         description: 'Display sections (1 - Trending, 2 - Latest, 3 - Department)'
         required: true
-      image_base64:
-        description: 'Event image (base64 encoded JPG/PNG)'
+      image_url:
+        description: 'Event image URL (Link from postimages.org)'
         required: true
 
 jobs:
@@ -53,7 +53,7 @@ jobs:
         run: |
           mkdir -p "public/photos/events/${{ github.event.inputs.by }}"
 
-          echo "${{ github.event.inputs.image_base64 }}" | base64 --decode > temp_image
+          curl image_url > temp_image
           
           FILE_TYPE=$(file -b --mime-type temp_image)
           
