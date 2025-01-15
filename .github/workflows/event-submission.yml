@@ -46,6 +46,8 @@ jobs:
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
+          git checkout main
+          git pull origin main  # Ensure you're up-to-date with main
           branch_name="event-${{ github.event.inputs.title }}"
           git checkout -b $branch_name
 
@@ -115,4 +117,5 @@ jobs:
             - Categories: ${{ github.event.inputs.category }}
             
             Please review and approve this event submission.
-          branch: main # Work on prod
+          branch: event-${{ github.event.inputs.title }}
+          delete-branch: true
