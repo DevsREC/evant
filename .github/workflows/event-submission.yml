@@ -42,18 +42,14 @@ jobs:
         with:
           node-version: '18'
 
-      # - name: Create new event branch
-      #   run: |
-      #     git config --global user.name 'GitHub Action'
-      #     git config --global user.email 'action@github.com'
-      #     branch_name="event-${{ github.event.inputs.title }}"
-      #     git checkout -b $branch_name
-
       - name: Process image and detect format
         run: |
-          mkdir -p "public/photos/events/${{ github.event.inputs.by }}"
+          # Convert "by" field to lowercase
+          LOWER_BY=$(echo "${{ github.event.inputs.by }}" | tr '[:upper:]' '[:lower:]')
+          
+          mkdir -p "public/photos/events/$LOWER_BY"
 
-          curl "${{ github.event.inputs.image_url }}" > temp_image
+          curl -o temp_image "${{ github.event.inputs.image_url }}"
           
           FILE_TYPE=$(file -b --mime-type temp_image)
           
@@ -66,7 +62,7 @@ jobs:
             exit 1
           fi
           
-          mv temp_image "public/photos/events/${{ github.event.inputs.by }}/${{ github.event.inputs.title }}.$EXTENSION"
+          mv temp_image "public/photos/events/$LOWER_BY/${{ github.event.inputs.title }}.$EXTENSION"
           
           echo "IMAGE_EXTENSION=$EXTENSION" >> $GITHUB_ENV
 
@@ -80,15 +76,16 @@ jobs:
           const eventsFile = fs.readFileSync(eventsPath, "utf8");
           const events = require("./src/data/event.ts").EventDatas;
           
+          const LOWER_BY = "${{ github.event.inputs.by }}".toLowerCase();
           const newEvent = {
             id: Math.max(...events.map(e => e.id)) + 1,
             title: "${{ github.event.inputs.title }}",
             by: "${{ github.event.inputs.by }}",
-            avatar: `/photos/clubs/${${{ github.event.inputs.by }}.toLowerCase()}.jpg`,
+            avatar: `/photos/clubs/${LOWER_BY}.jpg`,
             date: "${{ github.event.inputs.date }}",
             registrationLink: "${{ github.event.inputs.registrationLink }}",
             description: `${{ github.event.inputs.description }}`,
-            image: `/photos/events/${${{ github.event.inputs.by }}/${{ github.event.inputs.title }}.${process.env.IMAGE_EXTENSION}`,
+            image: `/photos/events/${LOWER_BY}/${{ github.event.inputs.title }}.${process.env.IMAGE_EXTENSION}`,
             category: "${{ github.event.inputs.category }}".split(",").map(c => c.trim()),
             display: "${{ github.event.inputs.display }}".split(",").map(d => parseInt(d.trim()))
           };
@@ -111,6 +108,4 @@ jobs:
             - Categories: ${{ github.event.inputs.category }}
             
             Please review and approve this event submission.
-          # branch: event-${{ github.event.inputs.title }}
           branch: main # Work on prod
-          # delete-branch: true
