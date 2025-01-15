@@ -123,7 +123,7 @@ event/
 
 1. Clone the repository
 ```bash
-git clone https://github.com/[your-username]/event.git
+git clone https://github.com/DevsREC/evant.git
 ```
 
 2. Install dependencies

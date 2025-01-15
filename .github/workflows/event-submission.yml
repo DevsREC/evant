@@ -42,12 +42,12 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Create new event branch
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          branch_name="event-${{ github.event.inputs.title }}"
-          git checkout -b $branch_name
+      # - name: Create new event branch
+      #   run: |
+      #     git config --global user.name 'GitHub Action'
+      #     git config --global user.email 'action@github.com'
+      #     branch_name="event-${{ github.event.inputs.title }}"
+      #     git checkout -b $branch_name
 
       - name: Process image and detect format
         run: |
@@ -111,5 +111,6 @@ jobs:
             - Categories: ${{ github.event.inputs.category }}
             
             Please review and approve this event submission.
-          branch: event-${{ github.event.inputs.title }}
-          delete-branch: true
+          # branch: event-${{ github.event.inputs.title }}
+          branch: main # Work on prod
+          # delete-branch: true
